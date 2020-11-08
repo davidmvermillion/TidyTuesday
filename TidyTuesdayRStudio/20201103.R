@@ -1,6 +1,9 @@
 # Pulling data from the main repository (lines 3-14 copied)
 # Readme from https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-11-03/readme.md
 
+# Load Data ---------------------------------------------------------------
+
+
 ## Get the Data
 
 # Read in with tidytuesdayR package 
@@ -21,6 +24,45 @@ ikea <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidyt
 # Load tidyverse
 library(tidyverse)
 
+# Begin Analysis ----------------------------------------------------------
+
+
 EDA1 <- glimpse(ikea)
 EDA2 <- summary(ikea)
 EDA2
+
+# R base scatterplot matrix
+# http://www.sthda.com/english/wiki/scatter-plot-matrices-r-base-graphs
+pairs(ikea[1:4], pch = 19)
+pairs(ikea)
+# Dataset inadequately designed to readily utilize the pairs function without further cleaning
+
+# Plot depth
+plot(ikea$depth)
+# Plot height
+plot(ikea$height)
+# Plot width
+plot(ikea$width)
+
+# Separate numeric observations
+cols <- c(5,12,13,14)
+ikeanumeric <- ikea[,cols]
+
+# Plot numeric observations
+pairs(ikeanumeric)
+
+# Create Volume Observation
+volume <- ikeanumeric[2]*ikeanumeric[3]*ikeanumeric[4]
+
+# Add volume to ikeanumeric
+# Resorted to this method after being confused with results
+ikeanumeric2 <- ikeanumeric
+ikeanumeric2["volume"] <- volume
+
+# Plot new numeric observations
+pairs(ikeanumeric2)
+
+# Comments on material ------
+# SR is Saudi Arabian currency
+# Create volume for graphing
+
