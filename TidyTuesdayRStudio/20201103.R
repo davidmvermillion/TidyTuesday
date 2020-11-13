@@ -62,6 +62,26 @@ ikeanumeric2["volume"] <- volume
 # Plot new numeric observations
 pairs(ikeanumeric2)
 
+# boxplot pairs
+boxplot(ikeanumeric, use.cols = TRUE)
+# Price has a spread, but not the others
+
+p <- ggplot(ikeanumeric3, aes(ikeanumeric)) + 
+  geom_boxplot()
+
+# separate price from ikeanumeric
+ikeanumeric3 <- ikeanumeric[-1]
+
+# Show spread in main dimensions
+boxplot(ikeanumeric3)
+
+# boxplot volume
+boxplot(ikeanumeric2$volume, notch = TRUE)
+# Significant outliers in dataset. Not meaningful elsewhere.
+
+# stripchart
+stripchart(ikeanumeric)
+
 # Comments on material ------
 # SR is Saudi Arabian currency
 # Create volume for graphing
